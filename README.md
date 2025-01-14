@@ -1,5 +1,7 @@
 # SIDLE: Tree-structure Aware Indexes for CXL-based Heterogeneous Memory
 
+This repository is fully anonymized.
+
 ## Part1. Environment Setup
 <!-- > The following instructions are for Fedora 38. For other Linux distributions, please refer to the official installation guide. -->
 >  NOTE: We only test the building procedure on Fedora 38 & Ubuntu 22.04 LTS with Linux 6.2.x.
