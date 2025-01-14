@@ -1,0 +1,13 @@
+build/
+*/build/
+.vscode
+*.log
+*.txt
+!CMakeLists.txt
+*/*.o
+*.o
+*.in
+*.csv
+unready_script
+script
+.git_backup
