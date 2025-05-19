@@ -119,7 +119,6 @@ In such cases, please modify the scripts in `/script` avoid use more threads tha
     ├── masstree-beta                       # Masstree source code and integration with SIDLE
     └── sidle_utils                         # SIDLE framework source code
 ```
-The scripts for Figure 17, Figure 18, Figure 19, and Table 2 have not been checked yet. We will release them to this repo as soon as possible.
 
 ### 2.3 Benchmark Commands
 #### 2.3.1 Microbenchmark
