@@ -785,6 +785,34 @@ target_link_libraries(rw_mix_val24
 target_link_directories(rw_mix_val24 PRIVATE /usr/local/lib)
 
 ###############################################################################
+# rw_mix_val32
+###############################################################################
+add_executable(rw_mix_val32
+    ${CMAKE_CURRENT_SOURCE_DIR}/../benchmark/synthetic/rw_mix.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/helper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art_node.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_worker.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/cxl_utils/cxl_allocator.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/masstree-beta/masstree.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_frontend.cc
+)
+target_compile_definitions(rw_mix_val32
+    PRIVATE
+        ${NDEBUG}
+        ${NDEBUGGING}
+        ${CORRECTNESS}
+        VAL_32
+)
+target_link_libraries(rw_mix_val32
+    PRIVATE
+        -lpthread
+        LIBJSON
+        memkind
+)
+target_link_directories(rw_mix_val32 PRIVATE /usr/local/lib)
+
+###############################################################################
 # rw_mix_val40
 ###############################################################################
 add_executable(rw_mix_val40
@@ -923,3 +951,91 @@ target_link_libraries(rw_mix_val512
         memkind
 )
 target_link_directories(rw_mix_val512 PRIVATE /usr/local/lib)
+
+
+##############################################################################
+# rw_mix_val1024
+##############################################################################
+add_executable(rw_mix_val1024
+    ${CMAKE_CURRENT_SOURCE_DIR}/../benchmark/synthetic/rw_mix.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/helper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art_node.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_worker.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/cxl_utils/cxl_allocator.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/masstree-beta/masstree.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_frontend.cc
+)
+target_compile_definitions(rw_mix_val1024
+    PRIVATE
+        ${NDEBUG}
+        ${NDEBUGGING}
+        ${CORRECTNESS}
+        VAL_1024
+)
+target_link_libraries(rw_mix_val1024
+    PRIVATE
+        -lpthread
+        LIBJSON
+        memkind
+)
+target_link_directories(rw_mix_val1024 PRIVATE /usr/local/lib)
+
+
+##############################################################################
+# rw_mix_val2048
+##############################################################################
+add_executable(rw_mix_val2048
+    ${CMAKE_CURRENT_SOURCE_DIR}/../benchmark/synthetic/rw_mix.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/helper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art_node.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_worker.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/cxl_utils/cxl_allocator.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/masstree-beta/masstree.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_frontend.cc
+)
+target_compile_definitions(rw_mix_val2048
+    PRIVATE
+        ${NDEBUG}
+        ${NDEBUGGING}
+        ${CORRECTNESS}
+        VAL_2048
+)
+target_link_libraries(rw_mix_val2048
+    PRIVATE
+        -lpthread
+        LIBJSON
+        memkind
+)
+target_link_directories(rw_mix_val2048 PRIVATE /usr/local/lib)
+
+
+###############################################################################
+# tpc-c
+###############################################################################
+add_executable(tpcc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../benchmark/real_world/tpcc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/helper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/cxl_utils/cxl_allocator.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art_node.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_worker.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/masstree-beta/masstree.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_frontend.cc
+)
+target_compile_definitions(tpcc
+    PRIVATE
+        ${NDEBUG}
+        ${NDEBUGGING}
+        ${CORRECTNESS}
+        USE_MT
+        TF_GRAPH_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../asset"
+)
+target_link_libraries(tpcc
+    PRIVATE
+        -lpthread
+        LIBJSON
+        memkind
+)
+target_link_directories(tpcc PRIVATE /usr/local/lib)
