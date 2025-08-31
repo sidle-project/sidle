@@ -1,6 +1,7 @@
 # SIDLE: Tree-structure Aware Indexes for CXL-based Heterogeneous Memory
 
-This repository is fully anonymized.
+<!-- > This repository is fully anonymized.  -->
+This repository contains the implementation of SIDLE. The baselines can be found in the [sidle-baselines](https://github.com/sidle-project/sidle-baselines) repo.
 
 ## Part1. Environment Setup
 <!-- > The following instructions are for Fedora 38. For other Linux distributions, please refer to the official installation guide. -->
@@ -209,11 +210,20 @@ Execute the following commands to conduct a macrobenchmark evaluation:
 - `$write_ratio`: The write ratio of the workload, ranging from 0 to 1.
 - `$target`: The target data structure, either `art` or `masstree`.
 - `$runtime`: The total runtime of the workload in seconds.
-- `$warmup`: The warmup time of the workload in seconds, the default value is 0.
+- `$warmup`: The warmup time of the workload in seconds; the default value is 0.
 - `$fgn`: The number of foreground threads.
 - `$size`: The number of keys loaded during the initialization.
 - `$cxl_percentage`: The percentage of the CXL memory used in the workload.
 - `$local_memory_usage`: The maximum local DRAM usage of the workload in MiB.
+
+### User guide for adapting existing tree-structure indexes
+
+The SIDLE framework requires developers to adapt their tree-structure indexes in three steps: 
+1. adding SIDLE metadata to the original tree nodes;
+2. calling SIDLE's frontend helper functions when allocating new nodes and accessing leaf nodes;
+3. implementing the interfaces related to the tree-specific logic for the background module.
+
+We present the details of this framework in [guide.pdf](./guide.pdf). Additionally, we use a B+ tree as an example in this documentation to show how to integrate SIDLE with existing tree-structure indexes.
 
 ### Unimalloc
 We develop *Unimalloc* (the source code is under `third_party/cxl_utils/`), a unified memory allocator based on [memkind](https://github.com/memkind/memkind), to support both ratio-based and specific-type memory allocation across CXL and local DRAM.
