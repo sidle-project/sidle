@@ -109,7 +109,8 @@ In such cases, please modify the scripts in `/script` avoid use more threads tha
 │   ├── CMakeLists.txt
 │   ├── real_world                          # Real-world workload benchmarks
 │   └── synthetic                           # Micro and macro benchmarks
-├── CMakeLists.txt                          
+├── CMakeLists.txt 
+├── scripts                                 # Benchmark scripts                            
 ├── src
 │   ├── helper.cpp
 │   ├── helper.h
@@ -216,7 +217,27 @@ Execute the following commands to conduct a macrobenchmark evaluation:
 - `$cxl_percentage`: The percentage of the CXL memory used in the workload.
 - `$local_memory_usage`: The maximum local DRAM usage of the workload in MiB.
 
-### User guide for adapting existing tree-structure indexes
+#### 2.3.3 TPC-C benchmark
+Execute the following commands to conduct a TPC-C benchmark evaluation:
+```shell
+cd build
+./tpcc \
+    --warehouse $warehouse \
+    --runtime $runtime \
+    --warmup $warmup \
+    --fg $fgn \
+    --bg 0 \
+    -n 1 \
+    -o $cxl_percentage
+```
+- `$warehouse`: The number of warehouses in the TPC-C benchmark.
+- `$runtime`: The total runtime of the workload in seconds.
+- `$warmup`: The warmup time of the workload in seconds, the default value is 0.
+- `$fgn`: The number of foreground threads.
+- `$cxl_percentage`: The percentage of the CXL memory used in the workload.
+- NOTE: By default, the TPCC benchmark targets Masstree. To benchmark ART, please comment out lines 30-31 and uncomment lines 32-33 in `benchmark/real_world/tpcc_loader.h`.
+
+## User guide for adapting existing tree-structure indexes
 
 The SIDLE framework requires developers to adapt their tree-structure indexes in three steps: 
 1. adding SIDLE metadata to the original tree nodes;
@@ -225,7 +246,7 @@ The SIDLE framework requires developers to adapt their tree-structure indexes in
 
 We present the details of this framework in [guide.pdf](./guide.pdf). Additionally, we use a B+ tree as an example in this documentation to show how to integrate SIDLE with existing tree-structure indexes.
 
-### Unimalloc
+## Unimalloc
 We develop *Unimalloc* (the source code is under `third_party/cxl_utils/`), a unified memory allocator based on [memkind](https://github.com/memkind/memkind), to support both ratio-based and specific-type memory allocation across CXL and local DRAM.
 Unimalloc offers equivalent replacements for commonly used libc memory allocation interfaces.
 It provides two types of interfaces: one for allocating memory between CXL and local DRAM in a specified ratio, and another for allocating memory specifically to CXL.

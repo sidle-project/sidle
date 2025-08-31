@@ -17,6 +17,8 @@
 #define VAL_LEN 2
 #elif defined(VAL_40)
 #define VAL_LEN 4
+#elif defined(VAL_32)
+#define VAL_LEN 3
 #elif defined(VAL_64)
 #define VAL_LEN 7
 #elif defined(VAL_128)
@@ -25,6 +27,12 @@
 #define VAL_LEN 31
 #elif defined(VAL_512)
 #define VAL_LEN 63
+#elif defined(VAL_1024)
+#define VAL_LEN 127
+#elif defined(VAL_2048)
+#define VAL_LEN 255
+#elif defined(VAL_4096)
+#define VAL_LEN 511
 #else
 #define VAL_LEN 0
 #endif

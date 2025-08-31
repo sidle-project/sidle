@@ -210,7 +210,7 @@ inline void parse_args(int argc, char **argv) {
       break;
     case 'u':
       zipfian_theta = strtod(optarg, NULL);
-      INVARIANT(zipfian_theta < 1 && zipfian_theta > -1);
+      ZIPF_CONSTANT = zipfian_theta;
       break;
     case 'v':
       hot_data_ratio = strtol(optarg, NULL, 10);
