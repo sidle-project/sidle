@@ -49,8 +49,8 @@ The physical CPU id can be found by running lscpu in the terminal.
 In our machine, we see the following output:
 ```shell
 ...
-NUMA node0 CPU(s):     0-47,96-143
-NUMA node1 CPU(s):     48-95,144-191
+NUMA node0 CPU(s):     0-47
+NUMA node1 CPU(s):     48-95
 ...
 ```
 ### 1.4 Build binaries
