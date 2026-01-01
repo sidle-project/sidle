@@ -1039,3 +1039,66 @@ target_link_libraries(tpcc
         memkind
 )
 target_link_directories(tpcc PRIVATE /usr/local/lib)
+
+###############################################################################
+# art long key trace
+###############################################################################
+add_executable(art_long_key
+    ${CMAKE_CURRENT_SOURCE_DIR}/../benchmark/real_world/art_long_key.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/helper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art_node.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_worker.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/cxl_utils/cxl_allocator.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/masstree-beta/masstree.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_frontend.cc
+)
+target_compile_definitions(art_long_key
+    PRIVATE
+        ${NDEBUG}
+        ${NDEBUGGING}
+        ${CORRECTNESS}
+        USE_MT
+        REAL_WORLD
+        LONG_KEY
+        TF_GRAPH_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../asset"
+)
+target_link_libraries(art_long_key
+    PRIVATE
+        -lpthread
+        LIBJSON
+        memkind
+)
+target_link_directories(art_long_key PRIVATE /usr/local/lib)
+
+###############################################################################
+# art long key trace with latency
+###############################################################################
+add_executable(art_long_key_lat
+    ${CMAKE_CURRENT_SOURCE_DIR}/../benchmark/real_world/art_long_key.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/helper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/art/art_node.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_worker.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/cxl_utils/cxl_allocator.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/masstree-beta/masstree.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sidle_utils/sidle_frontend.cc
+)
+target_compile_definitions(art_long_key_lat
+    PRIVATE
+        ${NDEBUG}
+        ${NDEBUGGING}
+        ${CORRECTNESS}
+        USE_MT
+        ANALYZE_LATENCY
+        REAL_WORLD
+        LONG_KEY
+        TF_GRAPH_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../asset"
+)
+target_link_libraries(art_long_key_lat
+    PRIVATE
+        -lpthread
+        LIBJSON
+        memkind
+)
+target_link_directories(art_long_key_lat PRIVATE /usr/local/lib)
